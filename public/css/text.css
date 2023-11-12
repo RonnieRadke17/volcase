@@ -1,0 +1,31 @@
+#titulo {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:burlywood;
+    font-weight: bold;
+    font-size: 4vw; /* Utilizando unidades vw para hacerlo responsive */
+    text-align: center; /* Centrar el texto */
+}
+
+/* Aplicar un tamaño mínimo para evitar que el texto sea demasiado pequeño en pantallas pequeñas */
+@media (max-width: 600px) {
+    #titulo{
+        font-size: 16px;
+    }
+}
+
+
+
+#subtitulo {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:burlywood;
+    font-weight: bold;
+    font-size: 2vw; /* Utilizando unidades vw para hacerlo responsive */
+    text-align: center; /* Centrar el texto */
+}
+
+/* Aplicar un tamaño mínimo para evitar que el texto sea demasiado pequeño en pantallas pequeñas */
+@media (max-width: 300px) {
+    #subtituloo{
+        font-size: 12px;
+    }
+}
