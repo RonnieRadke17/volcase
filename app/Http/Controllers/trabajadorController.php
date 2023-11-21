@@ -11,7 +11,7 @@ class trabajadorController extends Controller
      */
     public function index()
     {//muestra todos los registros
-        return view('trabajadores.show_trabajadores');
+        return view('trabajadores.index');
     }
 
     /**

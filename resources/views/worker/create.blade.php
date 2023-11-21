@@ -8,7 +8,7 @@
 <h2>Registro de trabajadores</h2>
 <form action="{{url('/trabajador')}}" onsubmit="return validar()">
 @csrf
-@include('trabajadores.form');
+@include('worker.form');
 </form>
 </div>
 @endsection

@@ -15,7 +15,7 @@
 </div>
 @endif
 
-<a href="{{url('/trabajador/create')}}" class="btn btn-success">Añadir</a>
+<a href="{{url('/worker/create')}}" class="btn btn-success">Añadir</a>
 <a href="{{url('/home')}}" class="btn btn-info">Regresar</a>
 <br>
 <table class="table table-light">
