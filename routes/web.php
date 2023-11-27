@@ -14,8 +14,7 @@ Route::get('/trabajador',[trabajadorController::class,'index']);
 Route::get('/trabajador/create',[trabajadorController::class,'create']);
 Route::get('/trabajador/calendario',[trabajadorController::class,'calender']);
 */
-Route::get('/worker',[workerController::class,'index']);
-Route::get('/worker/create',[workerController::class,'create']);
+//Route::get('/worker',[workerController::class,'index']);
 
 
 
@@ -26,4 +25,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/worker',workerController::class);
+
+

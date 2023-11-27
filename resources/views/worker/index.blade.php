@@ -1,80 +1,81 @@
 @extends('layouts.app')
 
+@section('template_title')
+    Worker
+@endsection
+
 @section('content')
-<div class="container">
-<h2>Lista de empleados</h2>
-<br>
-@if(Session::has('mensaje'))
-<div class="alert alert-success alert-dismissible" role="alert">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
 
-    {{Session::get('mensaje')}}
-    
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-</button>
-</div>
-@endif
+                            <span id="card_title">
+                                {{ __('Worker') }}
+                            </span>
 
-<a href="{{url('/worker/create')}}" class="btn btn-success">Añadir</a>
-<a href="{{url('/home')}}" class="btn btn-info">Regresar</a>
-<br>
-<table class="table table-light">
-    <thead class="thead-light">
-        <tr>
-            <th>#</th>
-            <th>Foto</th>
-            <th>Nombre</th>
-            <th>Apellido Paterno</th>
-            <th>Apellido Materno</th>
-            <th>Correo</th>
-            <th>contraseña</th>
-            <th>Calendario</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td><img class="img-thumbnail img-fluid" src="
-                https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1699660800&semt=sph
-                " width="100" alt=""></td>
-            <td>Juan</td>
-            <td>Martinez</td>
-            <td>Morales</td>
-            <td>juanMorales@gmail.com</td>
-            <td>**********</td>
-            <td>
-                <a href="{{url('/trabajador/calendario')}}" class="btn btn-secondary">Ver</a>
-            </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td><img class="img-thumbnail img-fluid" src="
-                https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE4h0dQpT7W65j3G0aaTpVYe7dIiRlMqcdNg&usqp=CAU
-                " width="100" alt=""></td>
-            <td>Ismael</td>
-            <td>Islas</td>
-            <td>Reyes</td>
-            <td>ismaelReyes@gmail.com</td>
-            <td>**********</td>
-            <td>
-                <a href="{{url('/trabajador/calendario')}}" class="btn btn-secondary">Ver</a>
-            </td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td><img class="img-thumbnail img-fluid" src="
-                https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRISzFUZu6HGJnU-58KFz0YAO6UtqEeP0kFqg&usqp=CAU
-                " width="100" alt=""></td>
-            <td>Iván</td>
-            <td>Villa</td>
-            <td>León</td>
-            <td>Ivanvilla@gmail.com</td>
-            <td>**********</td>
-            <td>
-                <a href="{{url('/trabajador/calendario')}}" class="btn btn-secondary">Ver</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
-</div>
+                             <div class="float-right">
+                                <a href="{{ route('worker.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Create New') }}
+                                </a>
+                              </div>
+                        </div>
+                    </div>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead class="thead">
+                                    <tr>
+                                        <th>No</th>
+                                        
+										<th>Nombre</th>
+										<th>Paterno</th>
+										<th>Materno</th>
+										<th>Correo</th>
+										<th>Telefono</th>
+										<th>Contraseña</th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($workers as $worker)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            
+											<td>{{ $worker->Nombre }}</td>
+											<td>{{ $worker->Paterno }}</td>
+											<td>{{ $worker->Materno }}</td>
+											<td>{{ $worker->Correo }}</td>
+											<td>{{ $worker->Telefono }}</td>
+											<td>{{ $worker->Contraseña }}</td>
+
+                                            <td>
+                                                <form action="{{ route('worker.destroy',$worker->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('worker.show',$worker->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('worker.edit',$worker->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {!! $workers->links() !!}
+            </div>
+        </div>
+    </div>
 @endsection
