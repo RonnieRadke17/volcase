@@ -2,22 +2,59 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class CalendarioAsistencia
+ *
+ * @property $ID_Asistencia
+ * @property $ID_Trabajador
+ * @property $ID_Trabajo
+ * @property $Fecha
+ * @property $Hora_Entrada
+ * @property $Hora_Salida
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @property Trabajadore $trabajadore
+ * @property Trabajo $trabajo
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
 class CalendarioAsistencia extends Model
 {
-    protected $primaryKey = 'ID_Asistencia';
+    
+    static $rules = [
+		'ID_Asistencia' => 'required',
+		'ID_Trabajador' => 'required',
+		'ID_Trabajo' => 'required',
+    ];
 
-    // Relación muchos a uno con Trabajador
-    public function trabajador()
+    protected $perPage = 20;
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['ID_Asistencia','ID_Trabajador','ID_Trabajo','Fecha','Hora_Entrada','Hora_Salida'];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function trabajadore()
     {
-        return $this->belongsTo(Trabajador::class, 'ID_Trabajador');
+        return $this->hasOne('App\Models\Trabajadore', 'id', 'ID_Trabajador');
     }
-
-    // Relación muchos a uno con Trabajo
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function trabajo()
     {
-        return $this->belongsTo(Trabajo::class, 'ID_Trabajo');
+        return $this->hasOne('App\Models\Trabajo', 'id', 'ID_Trabajo');
     }
+    
+
 }
