@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\administradorController;
 use App\Http\Controllers\trabajadorController;
-use App\Http\Controllers\workerController;
 //controlador de homeController que usa el metodo invoke porque es para el main
 //controlador administrador y si falta el del trabajador
 
@@ -28,6 +27,5 @@ Auth::routes();
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/worker',workerController::class);
 
 

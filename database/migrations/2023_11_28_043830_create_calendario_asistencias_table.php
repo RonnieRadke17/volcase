@@ -12,16 +12,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('calendario_asistencias', function (Blueprint $table) {
-            $table->id('IdAsistencia');
-            $table->unsignedBigInteger('Matricula');
-            $table->foreign('Matricula')->references('Matricula')->on('usuario');
-            $table->date('Fecha');
-            $table->time('HoraEntrada');
-            $table->time('HoraSalida');
+            $table->id('ID_Asistencia');
+            $table->foreignId('ID_Trabajador')->constrained('trabajadores');
+            $table->foreignId('ID_Trabajo')->constrained('trabajos');
+            $table->date('Fecha')->nullable();
+            $table->time('Hora_Entrada')->nullable();
+            $table->time('Hora_Salida')->nullable();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
