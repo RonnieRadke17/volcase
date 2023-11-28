@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\administradorController;
 use App\Http\Controllers\trabajadorController;
+use App\Http\Controllers\TrabajadoreController;
 //controlador de homeController que usa el metodo invoke porque es para el main
 //controlador administrador y si falta el del trabajador
 
@@ -15,7 +16,7 @@ Route::get('/trabajador/calendario',[trabajadorController::class,'calender']);
 */
 //Route::get('/worker',[workerController::class,'index']);
 
-
+Route::resource('/trabajadores',TrabajadoreController::class);
 
 
 Route::get('/', function () {
