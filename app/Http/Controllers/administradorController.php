@@ -11,4 +11,10 @@ class administradorController extends Controller
     {
         return view('administrador.show_profile');
     }
+
+
+    public function edit()
+    {
+        return view('administrador.edit');
+    }
 }

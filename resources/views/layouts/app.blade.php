@@ -76,6 +76,9 @@
                                         Trabajos
                                     </a>
 
+                                    <a class="dropdown-item" href="{{ route('actions.index') }}">
+                                        Acciones
+                                    </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

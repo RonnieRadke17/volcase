@@ -13,10 +13,7 @@ return new class extends Migration
     {
         Schema::create('administradores', function (Blueprint $table) {
             $table->id('ID_Administrador');
-            $table->string('Nombre')->nullable();
-            $table->string('Apellido')->nullable();
-            $table->string('Correo')->nullable();
-            $table->string('Contraseña')->nullable();
+            
             $table->timestamps(); // Esto agrega las columnas created_at y updated_at
         });
     }

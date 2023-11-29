@@ -6,17 +6,21 @@ use App\Http\Controllers\trabajadorController;
 use App\Http\Controllers\TrabajadoreController;
 use App\Http\Controllers\CalendarioAsistenciaController;
 use App\Http\Controllers\TrabajoController;
+use App\Http\Controllers\actionTrabajadorController;
 //controlador de homeController que usa el metodo invoke porque es para el main
 //controlador administrador y si falta el del trabajador
 
 Route::get('/administrador/profile',[administradorController::class,'index']);
-
+Route::get('/administrador/edit',[administradorController::class,'edit']);
 /*
 Route::get('/trabajador',[trabajadorController::class,'index']);
 Route::get('/trabajador/create',[trabajadorController::class,'create']);
 Route::get('/trabajador/calendario',[trabajadorController::class,'calender']);
 */
 //Route::get('/worker',[workerController::class,'index']);
+
+Route::resource('/actions',actionTrabajadorController::class);
+
 
 Route::resource('/trabajadores',TrabajadoreController::class);
 Route::resource('/trabajos',TrabajoController::class);
